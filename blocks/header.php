@@ -4,5 +4,5 @@
         <!--        <a class="p-2 text-dark" href="#">Features</a>-->
     </nav>
     <a class="btn btn-outline-primary mr-2" href="#">ХЕДЕР</a>
-    <a class="btn btn-outline-primary" href="#">ХЕДЕР2</a>
+    <a class="btn btn-outline-primary" href="../reg.php">Registation</a>
 </header>
