@@ -4,14 +4,20 @@
     $login = trim(filter_var($_POST['login'], FILTER_SANITIZE_STRING ));
     $pass = trim(filter_var($_POST['pass'], FILTER_SANITIZE_STRING ));
 
+    $error = '';
     if (strlen($username) <= 3)
-        exit();
-    else if (strlen($email) <= 3) // Заглушка на AJAX
-        exit();
+        $error = 'Name';
+    else if (strlen($email) <= 3)
+        $error = 'email';
     else if (strlen($login) <= 3)
-        exit();
+        $error = 'login';
     else if (strlen($pass) <= 3)
+        $error = 'pass';
+
+    if ($error != '') {
+        echo $error;
         exit();
+    }
 
     $hash = "daskdhaskd"; // Шифрование пароля
     $pass = md5($pass . $hash);
@@ -27,5 +33,6 @@
     $query = $pdo->prepare($sql); // podgotovka
     $query->execute( [$username, $email, $login, $pass] ); // zapolnenie
 
+    echo 'Ready';
 
     ?>
