@@ -10,7 +10,26 @@
 
     <main class="container mt-5">
         <div class="row">
-            <div class="col-md-8">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nostrum odit ullam. Aliquid architecto, autem blanditiis, consectetur cumque doloribus eaque eum eveniet expedita facere hic incidunt ipsum laborum libero mollitia nihil nisi nobis obcaecati odio omnis porro qui quidem quisquam quo repudiandae saepe sequi tempora. Eaque impedit quam sed vitae.</div>
+            <div class="col-md-8">
+            <?php
+            require_once 'mysql.php';
+
+            $sql = 'SELECT * FROM `articles` ORDER BY `date` DESC';
+            $query = $pdo->query($sql);
+            while ($row = $query->fetch(PDO::FETCH_OBJ)) {
+                echo "<h2>$row->title</h2> 
+                <p>$row->intro</p>
+                <p>$row->author</p>
+                <button class='btn btn-warning'>READ MORE</button>
+                ";
+
+
+
+
+            }
+
+            ?>
+            </div>
             <?php require 'blocks/aside.php'?>
         </div>
     </main>
