@@ -22,13 +22,8 @@
     $hash = "daskdhaskd"; // Шифрование пароля
     $pass = md5($pass . $hash);
 
-    $user = 'root';
-    $password = 'root';
-    $db = 'php_blog_db';
-    $host = 'localhost';
+    require_once '../mysql.php';
 
-    $dsn = 'mysql::host='.$host.';dbname='.$db;
-    $pdo = new PDO($dsn, $user, $password);
     $sql = 'INSERT INTO users(name, email, login, pass) VALUES(?, ?, ?, ?) ';
     $query = $pdo->prepare($sql); // podgotovka
     $query->execute( [$username, $email, $login, $pass] ); // zapolnenie
