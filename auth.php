@@ -28,6 +28,10 @@
                     Voity
                 </button>
             </form>
+            <?php else:
+                ?>
+            <h2><?=$_COOKIE['log'] ?></h2>]
+            <button class="btn btn-danger" id="exit_btn"> Viyti </button>
             <?php endif; ?>
 
         </div>
@@ -58,6 +62,20 @@
                     $('#errorBlock').show();
                     $('#errorBlock').text(data);
                 }
+            }
+        });
+    });
+
+
+    $('#exit_btn').click(function () {
+        $.ajax({
+            url: 'reg/exit.php',
+            type: 'POST',
+            cache: false,
+            data: {},
+            dataType: 'html',
+            success: function (data) {
+                document.location.reload(true);
             }
         });
     });

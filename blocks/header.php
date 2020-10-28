@@ -3,6 +3,17 @@
     <nav class="my-2 my-md-0 mr-md-3">
         <!--        <a class="p-2 text-dark" href="#">Features</a>-->
     </nav>
+    <?php
+    if ($_COOKIE['log'] == ''):
+    ?>
     <a class="btn btn-outline-primary mr-2" href="#">ХЕДЕР</a>
     <a class="btn btn-outline-primary" href="../reg.php">Registation</a>
+
+    <?php
+    else:
+    ?>
+    <a class="btn btn-outline-primary" href="../auth.php">Kabinet usera</a>
+    <?php
+    endif;
+    ?>
 </header>
