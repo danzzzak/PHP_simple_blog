@@ -20,7 +20,10 @@
                 echo "<h2>$row->title</h2> 
                 <p>$row->intro</p>
                 <p>$row->author</p>
-                <button class='btn btn-warning'>READ MORE</button>
+                <a href='/news.php?id=$row->id' title='$row->title'>
+                    <button class='btn btn-warning'>READ MORE</button>
+                </a>
+                
                 ";
 
 
