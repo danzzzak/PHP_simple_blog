@@ -41,6 +41,42 @@
                 </p>
 
             </div>
+            <h3 class="mt-5">KOMENTS</h3>
+
+            <form action="/phpsiten1/news.php?id=<?=$_GET['id']?>" method="post">
+                <label for="username">NAME</label>
+                <input type="text" name="username" value="<?=$_COOKIE['log']?>" id="username" class="form-control">
+
+                <label for="mess">Mess?</label>
+                <textarea  name="mess" id="mess" class="form-control"> </textarea>
+
+
+                <button type="submit" id="mess_send" class="btn btn-success mt-5">
+                    Add comment
+                </button>
+            </form>
+            <?php
+            if ($_POST['username'] != '' && $_POST['mess'] != '') {
+                $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING ));
+                $mess = trim(filter_var($_POST['mess'], FILTER_SANITIZE_EMAIL ));
+                $sql = 'INSERT INTO comments(name, mess, article_id) VALUES(?, ?, ?) ';
+                $query = $pdo->prepare($sql);
+                $query->execute( [$username, $mess, $_GET['id']] );
+            }
+
+            $sql = 'SELECT * FROM `comments` WHERE `article_id` = :id ORDER BY `id` DESC';
+            $query = $pdo->prepare($sql);
+            $query->execute(['id' => $_GET['id']] );
+            $comments = $query->fetchAll(PDO::FETCH_OBJ);
+
+            foreach ($comments as $comment) {
+                echo "<div class='alert alert-info mb-20'>
+                        <h4>$comment->name</h4>
+                        <p>$comment->mess</p>
+                    </div>";
+            }
+            ?>
+
         </div>
         <?php require 'blocks/aside.php'?>
     </div>
